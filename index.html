@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Prototipe VR Sederhana</title>
+    <meta name="description" content="VR Demo A-Frame">
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-sky color="#87CEEB"></a-sky> 
+
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+
+      <a-box id="kotak-ajaib" 
+             class="clickable"
+             position="0 1.5 -3" 
+             rotation="0 45 0" 
+             color="#EF2D5E"
+             animation="property: rotation; to: 0 405 0; loop: true; dur: 10000; easing: linear">
+      </a-box>
+
+      <a-camera>
+        <a-cursor
+          id="cursor"
+          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+          material="color: black; shader: flat"
+          fuse="true"
+          fuse-timeout="1500"
+          raycaster="objects: .clickable"> 
+          <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="backwards" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+        </a-cursor>
+      </a-camera>
+    </a-scene>
+
+    <script>
+      // Ambil elemen kotak berdasarkan ID
+      var kotak = document.querySelector('#kotak-ajaib');
+
+      // Tambahkan event listener untuk event 'click' (yang dipicu oleh fuse cursor)
+      kotak.addEventListener('click', function () {
+        // Logika: Ubah warna secara acak
+        var warnaBaru = '#' + Math.floor(Math.random()*16777215).toString(16);
+        kotak.setAttribute('material', 'color', warnaBaru);
+        
+        // Opsional: Pindahkan posisi sedikit biar dinamis
+        var randomX = (Math.random() * 2) - 1; 
+        kotak.setAttribute('position', {x: randomX, y: 1.5, z: -3});
+      });
+    </script>
+  </body>
+</html>
