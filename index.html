@@ -15,19 +15,21 @@
       <a-entity 
         gltf-model="#stage-model" 
         position="0 0 -5" 
-        scale="1 1 1"
+        scale="2 2 2"
         rotation="0 0 0">
       </a-entity>
 
       <a-assets>
-        <a-asset-item id="people-model" src="./kids_avatars.glb"></a-asset-item>
+        <a-asset-item id="woman-model" src="./singing.glb"></a-asset-item>
       </a-assets>
 
-      <a-entity 
-        gltf-model="#people-model" 
-        position="0 0 -5" 
+      <a-entity
+        gltf-model="#woman-model"
+        position="0 0 -5"
         scale="1 1 1"
-        rotation="0 0 0">
+        rotation="0 0 0"
+        animation-mixer="clip: *; loop: repeat; timeScale: 1"
+      >
       </a-entity>
       
       <a-sky color="#87CEEB"></a-sky> 
